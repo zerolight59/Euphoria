@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0e0b16;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    .background-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+    .container {
+      background-color: rgba(46, 21, 52, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+      max-width: 400px;
+      width: 100%;
+      border: 1px solid #00ffff;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      text-align: center;
+      color: #00ffff;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #00ffff;
+    }
+    input[type="text"] {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #00ffff;
+      border-radius: 4px;
+      background-color: #0e0b16;
+      color: #fff;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #00ffff;
+      color: #0e0b16;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00b3b3;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop class="background-video">
+    <source src="5680034-hd_1920_1080_24fps.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+  <div class="container">
+    <h1>Registration Form</h1>
+    <form id="dataForm" method="post" action="https://script.google.com/macros/s/AKfycbzP8VWDCFnHynqnIzWDcJjD31fib0itkjofFFcMNo6Ufr4l31fEHuvQV-_L16wg3-sL/exec">
+      <label for="uname">Enter name:</label>
+      <input type="text" id="uname" name="uname" required>
+      
+      <label for="pitem">Enter item name:</label>
+      <input type="text" id="pitem" name="pitem" required>
+      
+      <label for="collegeName">Enter college name:</label>
+      <input type="text" id="collegeName" name="collegeName" required>
+      
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <script>
+    document.getElementById('dataForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = document.getElementById('dataForm');
+      var formData = new FormData(form);
+      var params = new URLSearchParams();
+      for (var pair of formData.entries()) {
+        params.append(pair[0], pair[1]);
+      }
+      fetch(form.action, {
+        method: 'POST',
+        body: params
+      }).then(response => response.text()).then(data => {
+        alert(data);
+      });
+    });
+  </script>
+</body>
+</html>
